@@ -7,7 +7,7 @@ src:url(fonts/Pretendard-SemiBold.subset.woff2) format('woff2')}
 @font-face{font-family:Pretendard;font-style:normal;font-weight:700;font-display:swap;
 src:url(fonts/Pretendard-Bold.subset.woff2) format('woff2')}
 :root{--ink:#1A1A1A;--sub:#595959;--rule:#C9C5BD;--paper:#FFF;
---g0:#1F5D73;--g1:#7A3B5E;--g2:#6A5A1E;--wash:#F7F6F3}
+--g0:#1F5D73;--g1:#7A3B5E;--g2:#6A5A1E;--wash:#F7F6F3;--accent:#8A2F1F}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--paper);color:var(--ink)}
 body{font-family:Pretendard,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
@@ -37,7 +37,10 @@ tbody tr:last-child td{border-bottom:1.5px solid var(--ink)}
 .g0{color:var(--g0)}.g1{color:var(--g1)}.g2{color:var(--g2)}
 .chip{display:inline-block;width:8px;height:8px;margin-right:6px;
 vertical-align:1px;border-radius:1px}
-.c0{background:var(--g0)}.c1{background:var(--g1)}.c2{background:var(--g2)}
+/* 군 색은 칩에 붙을 때만 면을 칠한다. 맨 `.c0` 로 두면 같은 이름을 쓴 다른
+   칸이 통째로 칠해진다 — 실제로 핵심 숫자 칸이 색면이 됐다. */
+.chip.c0{background:var(--g0)}.chip.c1{background:var(--g1)}
+.chip.c2{background:var(--g2)}
 .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;margin-bottom:46px}
 .gunhead{display:flex;align-items:baseline;justify-content:space-between;
 margin-bottom:9px;padding-bottom:0}
@@ -52,7 +55,31 @@ font-weight:400;padding-left:0}
 .cmp tbody tr:last-child td{border-bottom:1.5px solid var(--ink)}
 .cmp th.u{font-size:13px;font-weight:650;color:var(--ink);padding-bottom:7px}
 .big{font-size:15px;font-weight:650}
-.warn{color:#8A2F1F}
+.warn{color:var(--accent)}
+
+/* 읽는 순서 — 「뭐부터 봐야 하나」를 화면이 스스로 말한다.
+   순서는 장식이 아니라 이 화면의 사용법이라 본문보다 앞·위에 둔다. */
+.lead{display:flex;flex-wrap:wrap;border-top:1.5px solid var(--ink);
+border-bottom:1px solid var(--rule);margin:0 0 26px}
+.lead .st{flex:1 1 200px;min-width:0;padding:11px 17px 13px 0}
+.lead .st+.st{padding-left:17px;border-left:1px solid var(--rule)}
+.lead .no{font-size:10.5px;font-weight:700;color:var(--accent);letter-spacing:.07em}
+.lead .tx{font-size:12.5px;line-height:1.5;margin-top:3px}
+.lead .tx b{font-weight:600}
+
+/* 핵심 숫자 — 작은 회색 글씨에 묻어 두지 않는다. 한 화면의 앵커 값만 올린다. */
+.kpi{display:flex;flex-wrap:wrap;border-top:1.5px solid var(--ink);
+border-bottom:1px solid var(--rule);margin:0 0 30px}
+.kpi>div{flex:1 1 120px;min-width:0;padding:12px 16px 13px 0}
+.kpi>div+div{padding-left:16px;border-left:1px solid var(--rule)}
+.kpi .n{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.kpi .n em{font-style:normal;font-size:12.5px;font-weight:600;color:var(--sub);
+margin-left:2px;letter-spacing:0}
+.kpi .k{font-size:11px;color:var(--sub);margin-top:3px}
+.kpi .hot .n{color:var(--accent)}
+.kpi .c0 .n{color:var(--g0)}
+.kpi .c1 .n{color:var(--g1)}
+.kpi .c2 .n{color:var(--g2)}
 
 /* 비교할 대학 고르기. 고르는 칸은 자료가 아니라 도구라 색을 쓰지 않는다 —
    가/나/다 세 색은 군 칩에만 남긴다(§디자인: 색은 데이터 범주에만). */
@@ -170,14 +197,25 @@ color:var(--sub);border-bottom:2px solid transparent;white-space:nowrap}
 .gnav a:hover{color:var(--ink);border-bottom-color:var(--rule)}
 .gnav .on{color:var(--ink);font-weight:650;border-bottom-color:var(--ink)}
 
-/* 색인 — 질문 3개를 입구로 깐다 */
-.ask{display:grid;grid-template-columns:repeat(3,1fr);gap:0 34px;margin:0 0 46px}
+/* 색인 — 질문 3개를 입구로 깐다.
+   세 칸은 「고르는 메뉴」가 아니라 **읽는 순서**다. 같은 무게로 늘어놓으면
+   무엇부터인지 화면이 말하지 않으므로 ①에만 강조색 굵은 머리선을 준다. */
+.ask{display:grid;grid-template-columns:repeat(3,1fr);gap:0 30px;margin:0 0 40px}
 .ask a{display:block;text-decoration:none;color:inherit;
-border-top:1.5px solid var(--ink);padding:13px 0 16px}
+border-top:1.5px solid var(--rule);padding:12px 14px 16px 0}
+.ask a.first{border-top:3px solid var(--accent)}
 .ask a:hover{background:var(--wash)}
-.ask .q{font-size:17px;font-weight:650;letter-spacing:-.01em;line-height:1.38}
+.ask .st{font-size:10.5px;font-weight:700;letter-spacing:.07em;color:var(--sub)}
+.ask a.first .st{color:var(--accent)}
+.ask .q{font-size:17px;font-weight:700;letter-spacing:-.01em;line-height:1.36;
+margin-top:4px}
+.ask .q b{font-weight:700;color:var(--sub);font-size:14px;margin-left:3px}
+.ask a:hover .q b{color:var(--ink)}
 .ask .w{font-size:11.5px;color:var(--sub);margin-top:6px}
-.ask .n{font-size:11.5px;color:var(--sub);margin-top:9px}
+.ask .n{font-size:12px;line-height:1.5;color:var(--ink);margin-top:11px;
+padding-top:9px;border-top:1px solid #EDEBE6}
+.morehead{font-size:11px;font-weight:600;color:var(--sub);letter-spacing:.02em;
+margin:0 0 7px}
 .more{display:flex;flex-wrap:wrap;gap:4px 20px;margin:0 0 42px;
 border-top:1px solid var(--rule);padding-top:12px}
 .more a{font-size:12px;color:var(--ink);text-decoration:none;
@@ -185,8 +223,9 @@ border-bottom:1px solid transparent}
 .more a:hover{border-bottom-color:var(--ink)}
 .grid26{display:grid;grid-template-columns:repeat(5,1fr);gap:3px 16px;margin:0 0 8px}
 .grid26 a{font-size:12.5px;color:var(--ink);text-decoration:none;padding:2px 0;
-border-bottom:1px solid transparent}
+border-bottom:1px solid transparent;display:flex;align-items:center}
 .grid26 a:hover{border-bottom-color:var(--ink)}
+.grid26 .pg{flex:0 0 auto;margin-right:5px}
 .todo{border-top:1.5px solid var(--ink);padding-top:13px;max-width:62ch}
 
 /* 전국 지형 (Ⅰ장) — 라벨은 값의 확실성 등급이라 본문과 같은 무게로 두지 않는다 */
@@ -215,9 +254,6 @@ max-width:94ch;word-break:break-all}
 .d-old{color:var(--sub);font-size:12px}
 .d-new{font-size:12.5px}
 .d-arrow{color:var(--sub);padding:0 2px}
-.tally{display:grid;grid-template-columns:repeat(5,1fr);gap:22px;margin-bottom:40px}
-.tally .n{font-size:27px;font-weight:650;letter-spacing:-.02em;line-height:1.1}
-.tally .k{font-size:11.5px;color:var(--sub);margin-top:2px}
 .kind{font-size:10.5px;color:var(--sub);white-space:nowrap}
 
 /* 좁은 화면.
@@ -232,8 +268,13 @@ max-width:94ch;word-break:break-all}
  /* 1180px 전제로 깐 격자 넷을 전부 1~2열로 내린다 */
  .cols{grid-template-columns:1fr;gap:30px;margin-bottom:34px}
  .ask{grid-template-columns:1fr;gap:0}
+ .ask a{padding-right:0}
  .grid26{grid-template-columns:repeat(2,1fr)}
- .tally{grid-template-columns:repeat(2,1fr);gap:18px}
+ /* 순서·숫자 칸은 쌓는다. 쌓인 칸에 왼쪽 구분선이 남으면 들여쓴 것처럼 읽힌다 */
+ .lead .st,.kpi>div{flex:1 1 100%;padding-right:0}
+ .lead .st+.st,.kpi>div+div{padding-left:0;border-left:0;
+ border-top:1px solid #EDEBE6}
+ .kpi .n{font-size:21px}
  .u-meta{margin-left:0}
  .bar .count{margin-left:0;flex:0 0 100%}
  .pickgrid label{padding:3px 0}
@@ -275,5 +316,4 @@ max-width:94ch;word-break:break-all}
 }
 @media screen and (max-width:430px){
  .grid26{grid-template-columns:1fr}
- .tally{grid-template-columns:1fr}
 }
