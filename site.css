@@ -1,0 +1,279 @@
+/* 묶음 안에서 끝난다 — 배포를 접고 HTML 파일로 돌렸으므로 외부 CDN 을 쓰지 않는다.
+   @font-face 의 url() 은 이 CSS 파일 기준으로 풀리므로 전 페이지가 같이 따라온다. */
+@font-face{font-family:Pretendard;font-style:normal;font-weight:400;font-display:swap;
+src:url(fonts/Pretendard-Regular.subset.woff2) format('woff2')}
+@font-face{font-family:Pretendard;font-style:normal;font-weight:600;font-display:swap;
+src:url(fonts/Pretendard-SemiBold.subset.woff2) format('woff2')}
+@font-face{font-family:Pretendard;font-style:normal;font-weight:700;font-display:swap;
+src:url(fonts/Pretendard-Bold.subset.woff2) format('woff2')}
+:root{--ink:#1A1A1A;--sub:#595959;--rule:#C9C5BD;--paper:#FFF;
+--g0:#1F5D73;--g1:#7A3B5E;--g2:#6A5A1E;--wash:#F7F6F3}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--ink)}
+body{font-family:Pretendard,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+font-size:14px;line-height:1.55;word-break:keep-all;
+font-variant-numeric:lining-nums tabular-nums;
+-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:34px 36px 64px}
+.runhead{display:flex;justify-content:space-between;gap:20px;align-items:baseline;
+font-size:11px;letter-spacing:.01em;color:var(--sub);
+border-bottom:1px solid var(--rule);padding-bottom:7px;margin-bottom:26px}
+.runhead b{font-weight:600;color:var(--ink)}
+h1{font-size:21px;font-weight:650;letter-spacing:-.01em;margin:0 0 5px}
+.lede{color:var(--sub);font-size:12.5px;margin:0 0 32px;max-width:66ch}
+h2{font-size:13px;font-weight:600;letter-spacing:.01em;margin:0 0 2px}
+table{border-collapse:collapse;width:100%;border:0;border-top:1.5px solid var(--ink)}
+caption{text-align:left;caption-side:top}
+th,td{border:0;padding:6px 10px;text-align:left;vertical-align:baseline}
+thead th{border-bottom:1px solid var(--ink);font-weight:600;
+font-size:11px;color:var(--sub);padding-bottom:5px}
+tbody tr:last-child td{border-bottom:1.5px solid var(--ink)}
+.num{text-align:right}
+.sub{color:var(--sub)}
+.mini{font-size:11px;color:var(--sub)}
+.note{font-size:11.5px;color:var(--sub);margin-top:9px;max-width:64ch}
+.fn{list-style:none;margin:10px 0 0;padding:0;font-size:11px;color:var(--sub);max-width:96ch}
+.fn li{margin:2px 0;text-indent:-1.4em;padding-left:1.4em}
+.g0{color:var(--g0)}.g1{color:var(--g1)}.g2{color:var(--g2)}
+.chip{display:inline-block;width:8px;height:8px;margin-right:6px;
+vertical-align:1px;border-radius:1px}
+.c0{background:var(--g0)}.c1{background:var(--g1)}.c2{background:var(--g2)}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;margin-bottom:46px}
+.gunhead{display:flex;align-items:baseline;justify-content:space-between;
+margin-bottom:9px;padding-bottom:0}
+.gunname{font-size:16px;font-weight:650;letter-spacing:-.01em}
+.gunstat{font-size:11.5px;color:var(--sub)}
+.sect{margin-bottom:44px}
+.digest{margin:3px 0 0;padding:0;list-style:none}
+.digest li{font-size:11.5px;color:var(--sub);line-height:1.5}
+.cmp th.lab,.cmp td.lab{width:118px;color:var(--sub);font-size:11.5px;
+font-weight:400;padding-left:0}
+.cmp td{border-bottom:1px solid #EDEBE6;font-size:12.5px}
+.cmp tbody tr:last-child td{border-bottom:1.5px solid var(--ink)}
+.cmp th.u{font-size:13px;font-weight:650;color:var(--ink);padding-bottom:7px}
+.big{font-size:15px;font-weight:650}
+.warn{color:#8A2F1F}
+
+/* 비교할 대학 고르기. 고르는 칸은 자료가 아니라 도구라 색을 쓰지 않는다 —
+   가/나/다 세 색은 군 칩에만 남긴다(§디자인: 색은 데이터 범주에만). */
+.pick{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+padding:10px 0 11px;margin:0 0 22px}
+.pickhead{display:flex;align-items:baseline;gap:10px;margin-bottom:8px}
+.pickhead b{font-size:12px;font-weight:650}
+.pickgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(166px,1fr));
+gap:3px 14px}
+.pickgrid label{font-size:12px;cursor:pointer;user-select:none;
+display:flex;align-items:center;gap:5px}
+.pickgrid label.off{color:var(--sub);cursor:default}
+.pickgrid input{margin:0;accent-color:var(--ink)}
+/* 칩은 이름 바로 옆에 붙인다. 칸 오른쪽 끝으로 밀면(margin-left:auto) 다음 대학
+   체크박스와 맞닿아 그쪽 군으로 읽힌다 — 실측으로 서울대 나군 칩이 연세대에 붙어 보였다 */
+.pg{display:flex;gap:2px}
+.pg .chip{margin:0;width:7px;height:7px}
+.plain{margin-left:auto;font:inherit;font-size:11px;color:var(--sub);
+background:none;border:0;border-bottom:1px solid var(--rule);
+padding:0 0 1px;cursor:pointer}
+.plain:hover{color:var(--ink);border-bottom-color:var(--ink)}
+
+@media print{.wrap{padding:0;max-width:none}@page{size:A4 landscape;margin:12mm}
+/* 고르는 칸은 종이에서 뜻이 없다 — 고른 결과만 남는다 */
+.pick{display:none}}
+
+/* 전수 조회표 — 요약표와 디자인을 공유하지 않는다 (UK Analysis Function) */
+.ref{font-size:12px}
+.ref thead th{position:sticky;top:0;background:var(--paper);z-index:2;
+box-shadow:0 1px 0 var(--ink)}
+.ref th,.ref td{padding:3px 10px 3px 0}
+.ref tbody tr:hover td{background:var(--wash)}
+.ref tbody tr:last-child td{border-bottom:1.5px solid var(--ink)}
+.bar{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;
+padding:11px 0 12px;border-bottom:1px solid var(--rule);margin-bottom:4px;
+position:sticky;top:0;background:var(--paper);z-index:3}
+.bar input[type=search]{font:inherit;font-size:13px;width:230px;padding:5px 8px;
+border:0;border-bottom:1px solid var(--ink);background:transparent;color:inherit}
+.bar input[type=search]:focus{outline:0;border-bottom-width:2px}
+.bar label{font-size:12px;color:var(--sub);cursor:pointer;user-select:none}
+.bar label input{margin-right:4px;vertical-align:-1px;accent-color:var(--ink)}
+.bar .count{margin-left:auto;font-size:12px;color:var(--sub)}
+.bar .count b{color:var(--ink);font-weight:650}
+.ref th.s{cursor:pointer;user-select:none}
+.ref th.s:after{content:'\2195';opacity:.32;margin-left:3px;font-size:10px}
+.ref th.s[data-dir]:after{opacity:1}
+.ref th.s[data-dir="1"]:after{content:'\2191'}
+.ref th.s[data-dir="-1"]:after{content:'\2193'}
+.gmark{font-size:11px;font-weight:600;margin-right:7px;white-space:nowrap}
+a.ul{color:inherit;text-decoration:none;border-bottom:1px solid var(--rule)}
+a.ul:hover{border-bottom-color:var(--ink)}
+.note a,.lede a{color:var(--ink)}
+.empty{padding:26px 0;color:var(--sub);font-size:12.5px}
+/* 열 폭을 못 박는다 — 표마다 자동 폭이면 같은 항목이 표마다 다른 자리에 선다 */
+table.fix{table-layout:fixed}
+.u3 th:nth-child(1),.u3 td:nth-child(1){width:118px}
+.u3 th:nth-child(2),.u3 td:nth-child(2){width:136px}
+.u3 th:nth-child(3),.u3 td:nth-child(3){width:250px}
+.u3 th:nth-child(4),.u3 td:nth-child(4){width:110px}
+.u3 th:nth-child(5),.u3 td:nth-child(5){width:110px}
+.u3 th:nth-child(6),.u3 td:nth-child(6){width:110px}
+.u3 th:nth-child(7),.u3 td:nth-child(7){width:150px}
+.u3 th:nth-child(8),.u3 td:nth-child(8){width:124px}
+.u3 thead th{top:47px}
+.u5 th:nth-child(1),.u5 td:nth-child(1){width:104px}
+.u5 th:nth-child(2),.u5 td:nth-child(2){width:40%}
+.u5 th:nth-child(4),.u5 td:nth-child(4){width:46px}
+.uu th:nth-child(1),.uu td:nth-child(1){width:152px}
+.uu th:nth-child(3),.uu td:nth-child(3){width:150px}
+.uu th:nth-child(4),.uu td:nth-child(4){width:76px}
+.uu th:nth-child(5),.uu td:nth-child(5){width:66px}
+
+/* 대학 상세 */
+.idx{display:flex;flex-wrap:wrap;gap:3px 14px;margin:0 0 34px;
+padding-bottom:13px;border-bottom:1px solid var(--rule)}
+.idx a{font-size:12px;color:var(--ink);text-decoration:none;
+border-bottom:1px solid transparent;padding-bottom:1px}
+.idx a:hover{border-bottom-color:var(--ink)}
+.idx .lab{font-size:11px;color:var(--sub);width:100%;margin-bottom:3px}
+.idx .grp{width:100%;margin-top:9px;font-size:11px;font-weight:600;
+color:var(--sub);letter-spacing:.02em}
+.u-sect{margin:0 0 50px;scroll-margin-top:14px}
+.u-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+border-bottom:1.5px solid var(--ink);padding-bottom:6px;margin-bottom:11px}
+.u-name{font-size:19px;font-weight:650;letter-spacing:-.01em}
+.u-meta{font-size:11.5px;color:var(--sub);margin-left:auto}
+.slots{margin:0 0 17px;padding:0;list-style:none;max-width:92ch}
+.slots li{font-size:12.5px;line-height:1.56;text-indent:-1.15em;padding-left:1.15em}
+.slots li:before{content:'— ';color:var(--sub)}
+.f8 td.lab{width:118px;color:var(--sub);font-size:11.5px;padding-left:0}
+.f8 td{border-bottom:1px solid #EDEBE6;font-size:12.5px;vertical-align:baseline}
+.f8 tbody tr:last-child td{border-bottom:1.5px solid var(--ink)}
+details{margin-top:15px}
+summary{font-size:11.5px;color:var(--sub);cursor:pointer;padding:5px 0;
+border-bottom:1px solid var(--rule);list-style:none}
+summary::-webkit-details-marker{display:none}
+summary:before{content:'▸ ';font-size:9px;vertical-align:1px}
+details[open]>summary:before{content:'▾ '}
+details[open]>summary{color:var(--ink)}
+.anchor{font-size:10.5px;color:var(--sub);font-variant-numeric:tabular-nums}
+.grade td,.grade th{padding:4px 9px 4px 0;font-size:11.5px}
+/* 영어·한국사 등급표 두 짝.
+   주의: flex 자식의 `min-width` 기본값은 `auto` 라 **내용보다 작아지지 않는다** —
+   안쪽 표에 가로 스크롤 그릇을 씌워도 칸 자체가 표 너비만큼 버티며 쪽을 밀어낸다
+   (실측 /univ 496px, 화면 375px). 줄어들 수 있게 0 으로 풀어 준다. */
+.gpair{display:flex;gap:40px;flex-wrap:wrap;margin-top:17px}
+.gpair>div{min-width:0}
+
+/* 전역 내비 — 8칸, 모든 페이지 같은 자리·같은 순서. 현재 위치만 무채색 반전 */
+.gnav{border-bottom:1px solid var(--rule);background:var(--paper)}
+.gnav-in{max-width:1180px;margin:0 auto;padding:0 36px;
+display:flex;flex-wrap:wrap;gap:0 2px;align-items:stretch}
+.gnav a,.gnav .on{font-size:12px;padding:10px 11px;text-decoration:none;
+color:var(--sub);border-bottom:2px solid transparent;white-space:nowrap}
+.gnav a:hover{color:var(--ink);border-bottom-color:var(--rule)}
+.gnav .on{color:var(--ink);font-weight:650;border-bottom-color:var(--ink)}
+
+/* 색인 — 질문 3개를 입구로 깐다 */
+.ask{display:grid;grid-template-columns:repeat(3,1fr);gap:0 34px;margin:0 0 46px}
+.ask a{display:block;text-decoration:none;color:inherit;
+border-top:1.5px solid var(--ink);padding:13px 0 16px}
+.ask a:hover{background:var(--wash)}
+.ask .q{font-size:17px;font-weight:650;letter-spacing:-.01em;line-height:1.38}
+.ask .w{font-size:11.5px;color:var(--sub);margin-top:6px}
+.ask .n{font-size:11.5px;color:var(--sub);margin-top:9px}
+.more{display:flex;flex-wrap:wrap;gap:4px 20px;margin:0 0 42px;
+border-top:1px solid var(--rule);padding-top:12px}
+.more a{font-size:12px;color:var(--ink);text-decoration:none;
+border-bottom:1px solid transparent}
+.more a:hover{border-bottom-color:var(--ink)}
+.grid26{display:grid;grid-template-columns:repeat(5,1fr);gap:3px 16px;margin:0 0 8px}
+.grid26 a{font-size:12.5px;color:var(--ink);text-decoration:none;padding:2px 0;
+border-bottom:1px solid transparent}
+.grid26 a:hover{border-bottom-color:var(--ink)}
+.todo{border-top:1.5px solid var(--ink);padding-top:13px;max-width:62ch}
+
+/* 전국 지형 (Ⅰ장) — 라벨은 값의 확실성 등급이라 본문과 같은 무게로 두지 않는다 */
+.axis{border-top:1.5px solid var(--ink);border-bottom:1px solid var(--rule);
+padding:12px 0 13px;margin:0 0 20px;font-size:12.5px;max-width:78ch}
+.legend{margin:0 0 36px;font-size:11.5px;color:var(--sub);max-width:78ch}
+.legend div{display:flex;gap:10px;padding:2px 0}
+.legend b{flex:0 0 78px;font-weight:600;color:var(--ink)}
+.tag{font-size:10.5px;font-weight:600;color:var(--sub);letter-spacing:.02em;
+margin-left:9px;white-space:nowrap}
+.ch1 h2{font-size:15px;font-weight:650;letter-spacing:-.005em;margin:0 0 9px}
+.ch1 table{margin-top:4px}
+.ch1 .sub-h{font-size:12px;font-weight:600;margin:24px 0 0}
+.unit{font-size:11px;color:var(--sub);margin:0 0 3px}
+.read{border-left:2px solid var(--rule);padding:1px 0 1px 13px;margin:15px 0 0;
+font-size:12.5px;max-width:74ch}
+.unpub{border-left:2px solid #8A2F1F;padding:1px 0 1px 13px;margin:15px 0 0;
+font-size:12px;max-width:74ch}
+.src{list-style:none;margin:15px 0 0;padding:0;font-size:11px;color:var(--sub);
+max-width:94ch;word-break:break-all}
+.src li{padding:1px 0}
+.ulist{font-size:11.5px;line-height:1.7;color:var(--sub)}
+.ulist b.ours{font-weight:600;color:var(--ink)}
+
+/* 올해 바뀐 곳 */
+.d-old{color:var(--sub);font-size:12px}
+.d-new{font-size:12.5px}
+.d-arrow{color:var(--sub);padding:0 2px}
+.tally{display:grid;grid-template-columns:repeat(5,1fr);gap:22px;margin-bottom:40px}
+.tally .n{font-size:27px;font-weight:650;letter-spacing:-.02em;line-height:1.1}
+.tally .k{font-size:11.5px;color:var(--sub);margin-top:2px}
+.kind{font-size:10.5px;color:var(--sub);white-space:nowrap}
+
+/* 좁은 화면.
+   주의: `screen and` 를 뺄 수 없다. A4 세로 인쇄 지면은 CSS 픽셀로 794px 라
+   폭 조건만 걸면 **종이에서도 이 블록이 켜진다** — 전수표가 인쇄에서 카드로
+   쏟아진다. 화면 전용임을 미디어 종류로 못 박는다. */
+.scroll{overflow:visible}
+@media screen and (max-width:860px){
+ .wrap{padding:20px 16px 52px}
+ .gnav-in{padding:0 16px;flex-wrap:nowrap;overflow-x:auto}
+ .runhead{flex-wrap:wrap;gap:3px 14px}
+ /* 1180px 전제로 깐 격자 넷을 전부 1~2열로 내린다 */
+ .cols{grid-template-columns:1fr;gap:30px;margin-bottom:34px}
+ .ask{grid-template-columns:1fr;gap:0}
+ .grid26{grid-template-columns:repeat(2,1fr)}
+ .tally{grid-template-columns:repeat(2,1fr);gap:18px}
+ .u-meta{margin-left:0}
+ .bar .count{margin-left:0;flex:0 0 100%}
+ .pickgrid label{padding:3px 0}
+ .plain{margin-left:0}
+
+ /* 표는 가로로 민다. 고정 폭 표가 폭 안에 들어오려고 글자를 세로로 쪼개는 것보다
+    스크롤이 읽힌다 — 다만 어디를 읽는지 잃지 않게 머리 열을 왼쪽에 고정한다. */
+ .scroll{overflow-x:auto}
+ .cmp{min-width:620px}
+ .cmp .lab{position:sticky;left:0;background:var(--paper);z-index:1}
+ .uu,.u5{min-width:560px}
+ .ch1 table,.grade{min-width:480px}
+ /* 등급표 두 짝을 나란히 두면 각 343px 를 또 나눠 가져 양쪽 다 못 읽는다 —
+    쌓아 놓고 각자 가로로 밀게 한다 */
+ .gpair{display:block}
+ .gpair>div+div{margin-top:17px}
+
+ /* 전수 604행만 카드로 바꾼다. 8열을 가로로 밀면 한 행을 읽는 데 두 번 민다. */
+ .u3,.u3 tbody,.u3 tr,.u3 td{display:block;width:auto}
+ .u3{min-width:0;border-top:0}
+ .u3 thead{display:none}
+ /* 주의: `display:block` 은 작성자 규칙이라 UA 의 `[hidden]{display:none}` 를 이긴다.
+    필터가 끈 행이 도로 보이므로 숨김을 같은 층위에서 다시 적는다. */
+ .u3 tr[hidden]{display:none}
+ .u3 tr{border-bottom:1px solid var(--rule);padding:9px 0 10px}
+ .u3 tbody tr:last-child td{border-bottom:0}
+ .u3 td{padding:0;text-align:left;border:0}
+ .u3 td:nth-child(1){font-size:11.5px;color:var(--sub)}
+ .u3 td:nth-child(2){font-size:11px;color:var(--sub)}
+ .u3 td:nth-child(3){font-size:14.5px;font-weight:650;line-height:1.35;margin:1px 0 4px}
+ .u3 td:nth-child(n+4):nth-child(-n+7){display:inline-block;margin:0 15px 0 0;
+ font-size:12.5px}
+ .u3 td:nth-child(n+5):nth-child(-n+7):before{color:var(--sub);font-size:11px;
+ font-weight:400;margin-right:3px}
+ .u3 td:nth-child(5):before{content:'인원'}
+ .u3 td:nth-child(6):before{content:'수학'}
+ .u3 td:nth-child(7):before{content:'영어 1→2'}
+ .u3 td:nth-child(8){margin-top:3px}
+}
+@media screen and (max-width:430px){
+ .grid26{grid-template-columns:1fr}
+ .tally{grid-template-columns:1fr}
+}
