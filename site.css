@@ -20,6 +20,12 @@ font-variant-numeric:lining-nums tabular-nums;
 font-size:11px;letter-spacing:.01em;color:var(--sub);
 border-bottom:1px solid var(--rule);padding-bottom:7px;margin-bottom:26px}
 .runhead b{font-weight:600;color:var(--ink)}
+/* 쪽 꼬리 — 러닝헤드와 같은 캡션 무게. 본문과 섞이지 않게 선 하나로만 뗀다 */
+.foot{margin:52px 0 0;padding:13px 0 0;border-top:1px solid var(--rule);
+font-size:11.5px;line-height:1.72;color:var(--sub);max-width:78ch}
+.foot p{margin:0 0 2px}
+.foot b{font-weight:650;color:var(--ink)}
+.foot a{color:var(--ink)}
 h1{font-size:21px;font-weight:650;letter-spacing:-.01em;margin:0 0 5px}
 .lede{color:var(--sub);font-size:12.5px;margin:0 0 32px;max-width:66ch}
 h2{font-size:13px;font-weight:600;letter-spacing:.01em;margin:0 0 2px}
@@ -129,6 +135,12 @@ border:0;border-bottom:1px solid var(--ink);background:transparent;color:inherit
 .ref th.s[data-dir]:after{opacity:1}
 .ref th.s[data-dir="1"]:after{content:'\2191'}
 .ref th.s[data-dir="-1"]:after{content:'\2193'}
+/* 같은 대학이 이어지는 행은 이름을 다시 적지 않는다. 604행에서 한 대학이 수십 행을
+   차지하므로 이름·단과·대학 단위 값이 그만큼 되풀이되고, 눈은 그 반복을 먼저 읽는다.
+   지우지 않고 가린다 — 검색이 칸의 글자를 보므로 DOM 에서 빼면 그 행이 안 걸린다.
+   대학이 바뀌는 자리에만 가로선 하나. zebra 는 계속 안 쓴다. */
+.ref td.rep{visibility:hidden}
+.ref tbody tr.grp>td{border-top:1px solid var(--rule)}
 .gmark{font-size:11px;font-weight:600;margin-right:7px;white-space:nowrap}
 a.ul{color:inherit;text-decoration:none;border-bottom:1px solid var(--rule)}
 a.ul:hover{border-bottom-color:var(--ink)}
@@ -144,7 +156,9 @@ table.fix{table-layout:fixed}
 .u3 th:nth-child(6),.u3 td:nth-child(6){width:110px}
 .u3 th:nth-child(7),.u3 td:nth-child(7){width:150px}
 .u3 th:nth-child(8),.u3 td:nth-child(8){width:124px}
-.u3 thead th{top:47px}
+/* 열 머리를 필터 막대 **아래**에 세운다. 47px 로 박아 두면 막대가 한 줄 더 꺾이는
+   폭(실측 55px)에서 머리 글자 위 8px 가 막대에 덮인다 — 재서 넣은 값을 쓴다. */
+.u3 thead th{top:var(--barh,47px)}
 .u5 th:nth-child(1),.u5 td:nth-child(1){width:104px}
 .u5 th:nth-child(2),.u5 td:nth-child(2){width:40%}
 .u5 th:nth-child(4),.u5 td:nth-child(4){width:46px}
@@ -321,6 +335,10 @@ max-width:94ch;word-break:break-all}
  /* 주의: `display:block` 은 작성자 규칙이라 UA 의 `[hidden]{display:none}` 를 이긴다.
     필터가 끈 행이 도로 보이므로 숨김을 같은 층위에서 다시 적는다. */
  .u3 tr[hidden]{display:none}
+ /* 카드에서는 한 행이 혼자 서므로 대학·단과를 다시 적어야 한다 — 가리기를 되돌린다.
+    행마다 아래 선이 이미 있어 대학 경계선도 겹친다. */
+ .ref td.rep{visibility:visible}
+ .ref tbody tr.grp>td{border-top:0}
  .u3 tr{border-bottom:1px solid var(--rule);padding:9px 0 10px}
  .u3 tbody tr:last-child td{border-bottom:0}
  .u3 td{padding:0;text-align:left;border:0}
