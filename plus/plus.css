@@ -1,0 +1,37 @@
+.src{display:inline-block;margin-left:4px;padding:0 4px;border-radius:2px;
+  font-size:9.5px;font-weight:600;letter-spacing:.02em;vertical-align:1px}
+.src.canon{background:#EDEBE6;color:#6B6660}
+.src.ext{background:#FFF1F3;color:#B8001F}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0 0 20px;
+  font-size:11.5px;color:var(--sub)}
+.legend b{font-weight:600;color:var(--ink)}
+.pl td.num,.pl th.num{text-align:right;font-variant-numeric:tabular-nums}
+.pl tbody tr{border-bottom:1px solid #EDEBE6}
+.pl td,.pl th{padding:4px 10px 4px 0;font-size:12px}
+.pl td.u{font-weight:600}
+.pl .none{color:#B0AAA2}
+.pl .hi{font-weight:650;color:#B8001F}
+.other{margin:34px 0 0;padding:15px 19px;background:var(--wash2);font-size:12.5px}
+.other a{color:var(--ink)}
+
+/* 전수 604행 9열은 좁은 화면에서 카드로 바꾼다. 정본이 8열에 이미 같은 판정을 내려
+   두었다(`.u3`: 가로로 밀면 한 행을 읽는 데 두 번 민다) — 9열이 그 밖으로 빠질 이유가 없다.
+   주의: `screen and` 를 빼면 A4 인쇄(794px)에서도 켜져 인쇄본이 카드로 떨어진다.
+   주의: 열 머리를 숨기므로 출처 표(전사/조달)가 같이 사라진다. 카드에서는 라벨 색이
+   그 자리를 받는다 — 조달 칸 라벨만 레드다. 출처 없는 숫자는 이 묶음의 결함이다.
+   CSS 주석은 산출 plus.css 에 그대로 실린다 — 내부 마커를 주석에도 적지 않는다. */
+@media screen and (max-width:860px){
+ .pl.u9,.pl.u9 tbody,.pl.u9 tr,.pl.u9 td{display:block;width:auto}
+ .pl.u9{min-width:0;border-top:0}
+ .pl.u9 thead{display:none}
+ .pl.u9 tbody tr{border-bottom:1px solid var(--rule);padding:9px 0 10px}
+ .pl.u9 tbody tr:last-child{border-bottom:0}
+ .pl.u9 td{padding:0;text-align:left;border:0;font-size:12.5px}
+ .pl.u9 td.u,.pl.u9 td.sub{display:inline-block;margin:0 7px 0 0;
+   font-size:11.5px;font-weight:400;color:var(--sub)}
+ .pl.u9 td.md{font-size:14.5px;font-weight:650;line-height:1.35;margin:1px 0 4px}
+ .pl.u9 td.v{display:inline-block;margin:0 14px 2px 0}
+ .pl.u9 td.v:before{content:attr(data-l) " ";font-size:11px;color:var(--sub)}
+ .pl.u9 td.v.s-ext:before{color:#B8001F}
+ .pl.u9 td.num{text-align:left}
+}
