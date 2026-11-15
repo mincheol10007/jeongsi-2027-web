@@ -8,13 +8,17 @@
 <link rel="stylesheet" href="../site.css">
 </head><body>
 <nav class="gnav"><div class="gnav-in"><a href="../index.html">처음 보기</a><a href="../national/index.html">올해 현황</a><a href="../compare/index.html">비교분석</a><a href="../medical/index.html">의약학계열</a><span class="on">대학별 요강</span></div></nav>
+<script>/* 좁은 화면에서 내비는 가로로 스크롤된다(flex-wrap:nowrap) — 그러면 지금 보고
+있는 칸이 오른쪽 화면 밖에 남는다(390px 실측: /units 의 현재 칸이 x=373, 17px만 보임).
+칸을 가운데로 끌어온다. 쪽 세로 위치는 건드리지 않으므로 scrollIntoView 는 쓰지 않는다. */
+(function(){var g=document.querySelector('.gnav-in'),o=g&&g.querySelector('.on');
+if(g&&o&&g.scrollWidth>g.clientWidth)
+g.scrollLeft=o.offsetLeft-(g.clientWidth-o.offsetWidth)/2})();</script>
 <div class="wrap">
 <div class="runhead"><span><b>대학별 요강</b> · 2027 정시 자연계열 일반전형</span><span>최종 지원 전 해당 대학 정시모집 요강 확인 필수</span></div>
-<h1>이 대학은 무엇이 다른가 <span class="mini">(서울 및 수도권 상위권 대학 정시모집 자연계열 일반전형 모집요강)</span></h1>
+<h1>서울 및 수도권 상위권 대학 정시모집 자연계열 일반전형 모집요강</h1>
 <p class="lede">26곳을 모두 같은 8가지 항목 · 같은 순서로 정리했다. 항목 자리가 모든 대학에서
 같아 두 번째 대학부터는 찾기 쉽다. 모집단위 전체와 요강 각주는 접힌 칸에 있다.</p>
-<div class="kpi"><div><div class="n">26<em>곳</em></div><div class="k">대학</div></div><div><div class="n">604<em>개</em></div><div class="k">모집단위 (접힌 칸에 전체)</div></div><div><div class="n">14,582<em>명</em></div><div class="k">정원 내 모집인원</div></div><div class="hot"><div class="n">24/26<em>곳</em></div><div class="k">올해 제도 변경 있음</div></div></div>
-<div class="lead"><div class="st"><div class="no">1단계</div><div class="tx">아래 <b>모집군 조합</b> 색인에서 대학을 고른다 — 같은 군 조합끼리 묶여 있다.</div></div><div class="st"><div class="no">2단계</div><div class="tx">대학 칸 머리의 <b>요약 3줄</b>로 모집군 · 올해 변경 · 수능 조건을 먼저 잡는다.</div></div><div class="st"><div class="no">3단계</div><div class="tx"><b>8필드</b>를 위에서 아래로 읽는다. 26곳 모두 같은 순서라 다음 대학부터는 바로 찾을 수 있다.</div></div><div class="st"><div class="no">4단계</div><div class="tx">더 필요하면 <b>접힌 칸</b>을 펼친다 — 모집단위 전체 · 요강 각주 · 전형 일정이 요강 줄 번호와 함께 있다.</div></div></div>
 <nav class="idx"><span class="lab">모집군 조합으로 찾기</span><span class="grp">가나다군 13곳</span><a href="#04-성균관대">성균관대</a><a href="#05-한양대_서울">한양대(서울)</a><a href="#07-중앙대">중앙대</a><a href="#10-건국대_서울">건국대(서울)</a><a href="#11-동국대_서울">동국대(서울)</a><a href="#14-숭실대">숭실대</a><a href="#15-인하대">인하대</a><a href="#17-서울과학기술대">서울과학기술대</a><a href="#18-세종대">세종대</a><a href="#21-한국항공대">한국항공대</a><a href="#22-단국대_죽전">단국대(죽전)</a><a href="#23-이화여대">이화여대</a><a href="#26-서울여대">서울여대</a><span class="grp">가나군 5곳</span><a href="#08-경희대">경희대</a><a href="#09-서울시립대">서울시립대</a><a href="#20-한양대에리카">한양대에리카</a><a href="#24-숙명여대">숙명여대</a><a href="#25-성신여대">성신여대</a><span class="grp">가군 2곳</span><a href="#02-연세대_서울">연세대(서울)</a><a href="#03-고려대_서울">고려대(서울)</a><span class="grp">나다군 2곳</span><a href="#06-서강대">서강대</a><a href="#16-아주대">아주대</a><span class="grp">다군 2곳</span><a href="#12-홍익대_서울">홍익대(서울)</a><a href="#13-국민대">국민대</a><span class="grp">가다군 1곳</span><a href="#19-광운대">광운대</a><span class="grp">나군 1곳</span><a href="#01-서울대">서울대</a></nav>
 <section class="u-sect" id="01-서울대">
 <div class="u-head"><span class="u-name">서울대</span>
@@ -415,11 +419,8 @@
 <th>요강 줄 번호</th></tr></thead><tbody><tr><td><b>✩</b></td><td class="sub">국민대 9행</td><td>수시모집 미충원 인원이 생기면 그만큼 <b>이월해 뽑는</b> 자리. 확정 인원은 2027.01.03. 대학 입학 홈페이지 공지 예정</td><td class="anchor sub">국민대 요강 L525 · L1829</td></tr><tr><td><b>이월인원</b></td><td class="sub">세종대 3행</td><td>같은 뜻을 요강이 기호 대신 <b>글자로</b> 적은 경우 — 수시 미충원 이월분으로 모집</td><td class="anchor sub">세종대 요강 L238 · L241 · L242</td></tr><tr><td><b>정원외</b></td><td class="sub">연세대(서울) 2행 · 한양대(서울) 1행 · 서강대 1행</td><td><b>채용조건형 계약학과</b>라 정시 정원 <b>밖</b>으로 뽑는다 — 연세대 32명(시스템반도체 25 · 디스플레이융합 7) · 한양대 8명 · 서강대 10명, 모두 위 인원 합계 밖이다. 요강이 적은 <b>자리가 대학마다 다르다</b> — 한양대·서강대는 인원 칸에 「(8)정원외」처럼 적었고, 연세대는 인원 칸을 그냥 숫자로 두고 모집단위 <b>이름</b>에 「【정원외계약학과】」를 붙였다</td><td class="anchor sub">연세대(서울) 요강 L157 · L506 · L508 · L597 / 한양대(서울) 요강 L236 / 서강대 요강 L301</td></tr><tr><td><b>표기없음</b></td><td class="sub">서강대 1행</td><td>요강이 그 칸을 <b>비워 뒀다</b>. 같은 표의 다른 줄은 모집이 없으면 「-」 를 적었으므로 빈칸의 뜻이 「없음」인지 「미정」인지 요강만으로는 갈리지 않는다 — <b>확인 중</b></td><td class="anchor sub">서강대 요강 L290</td></tr></tbody></table></div>
 <p class="note">※ 이 표기가 붙은 자리는 <b>정원 합계에 들어가지 않는다</b> —
 화면 위쪽 인원 합계와 이 행들의 수를 더해도 맞지 않는 이유다.</p></details>
-<footer class="foot">
-<p><b>이과전문 강남N플러스 재수종합학원</b> · 2027 정시 자연계열 일반전형 요강 정리</p>
-<p>26개 대학이 발표한 2027학년도 정시 모집요강에서 옮긴 값이다. 괄호 안 「L」 뒤 숫자는
-그 값이 적힌 요강 줄 번호다. 화면 기준일 2026-11-14 — 수시모집에서 이월이 생기면 정시 최종
-인원이 바뀐다.</p>
-<p><a href="https://mincheol10007.github.io/jeongsi-2027-plus/">작년 추가합격 · 수시 이월 · 경쟁률 3개년 보완판 ↗</a></p>
-</footer>
+
+<div class="secthead gap">이 화면이 담고 있는 것</div>
+<div class="kpi"><div><div class="n">26<em>곳</em></div><div class="k">대학</div></div><div><div class="n">604<em>개</em></div><div class="k">모집단위 (접힌 칸에 전체)</div></div><div><div class="n">14,582<em>명</em></div><div class="k">정원 내 모집인원</div></div><div class="hot"><div class="n">24/26<em>곳</em></div><div class="k">올해 제도 변경 있음</div></div></div>
+<footer class="foot"><p><b>이과전문 강남N플러스 재수종합학원</b> · 2027 정시 자연계열 일반전형 요강 정리 · 화면 기준일 2026-11-14</p><p><a href="../index.html#notice">출처 · 기준일 · 이 자료의 한계 안내</a> · <a href="https://mincheol10007.github.io/jeongsi-2027-plus/">작년 추가합격 · 수시 이월 · 경쟁률 3개년 보완판 ↗</a></p></footer>
 </div></body></html>
