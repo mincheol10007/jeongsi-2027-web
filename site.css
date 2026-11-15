@@ -15,10 +15,10 @@ html,body{margin:0;background:var(--paper);color:var(--ink)}
    11 = 글리프 표시(▸ ↕ 각주 번호) · 13 = 라벨·표 머리·주석·단위
    15 = 본문 산문·표 칸·목록 링크 · 18 = 절 제목·칼아웃
    23 = 대학 이름·카드 제목·보드 숫자 · 30 = 쪽 제목·핵심 숫자 · 38 = 입구 단계 번호.
-   🔴 새 크기를 만들지 않는다. 17종이던 때 10.5·11·11.5 가 같은 자리에서 섞여
+   새 크기를 만들지 않는다. 17종이던 때 10.5·11·11.5 가 같은 자리에서 섞여
    눈에 위계로 안 보였고(1280 실측: 11.5px 1,734칸 · 11px 2,078칸 · 10.5px 2,266칸),
    12 와 12.5 는 0.5px 차이로 구분 자체가 불가능했다.
-   🔴 옛 계단(10·11·12·14·16·19·21)은 81곳 중 62곳이 11·12 두 칸에 몰려 있어
+   옛 계단(10·11·12·14·16·19·21)은 81곳 중 62곳이 11·12 두 칸에 몰려 있어
    종수만 적었지 위계가 아니었다 — 「작고 뭐부터 볼지 모르겠다」의 근원이 여기였다.
    계단 사이를 최소 15% 벌리고, 한 계단에 역할 하나만 묶는다. */
 body{font-family:Pretendard,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
@@ -163,7 +163,7 @@ accent-color:var(--ink)}
    지우지 않고 가린다 — 검색이 칸의 글자를 보므로 DOM 에서 빼면 그 행이 안 걸린다.
    대학이 바뀌는 자리에만 가로선 하나. zebra 는 계속 안 쓴다. */
 .ref td.rep{visibility:hidden}
-/* 🔴 `visibility:hidden` 은 **안 보이는 채로 높이를 그대로 차지한다**. 이름 한 줄은
+/* `visibility:hidden` 은 **안 보이는 채로 높이를 그대로 차지한다**. 이름 한 줄은
    칸 너비가 흔들리지 않게 그대로 두고, 그 아래 두 줄만 자리까지 뺀다 — 안 그러면
    가린 417행도 3줄 높이라 604행이 전부 64px 가 된다. 여기서는 `display:none` 이라도
    글자는 DOM 에 남아 검색이 그 행을 계속 찾는다. */
@@ -202,7 +202,7 @@ font-weight:400;margin-top:2px;white-space:nowrap}
 /* 대학별 요강 */
 .idx{display:flex;flex-wrap:wrap;gap:0 14px;margin:0 0 34px;
 padding-bottom:13px;border-bottom:1px solid var(--rule)}
-/* 🔴 대학 색인도 목록이다 — 20.6px 로 서 있었다(실측 2026-11-16). 26칸을 44px 로
+/* 대학 색인도 목록이다 — 20.6px 로 서 있었다(실측 2026-11-16). 26칸을 44px 로
    올리면 색인 높이가 두 배가 되지만, 한 번만 지나가는 맨 윗줄이고 여기를 못 누르면
    대학 한 곳으로 좁히는 길이 막힌다. 밑줄은 글자 선에 붙인다(.grid26 과 같은 이유). */
 .idx a{font-size:15px;color:var(--ink);text-decoration:none;
@@ -242,7 +242,7 @@ details[open]>summary{color:var(--ink)}
 .gnav{border-bottom:1px solid var(--rule);background:var(--paper)}
 .gnav-in{max-width:1180px;margin:0 auto;padding:0 36px;
 display:flex;flex-wrap:wrap;gap:0 2px;align-items:stretch}
-/* 🔴 누름 자리 높이 하한은 44px 이다 (WCAG 2.5.5 · iOS HIG 44pt). padding 만
+/* 누름 자리 높이 하한은 44px 이다 (WCAG 2.5.5 · iOS HIG 44pt). padding 만
    믿으면 조용히 40.6px 로 떨어진다 — 실측 2026-11-16. 문장 · 표 칸 안의
    인라인 링크는 규격이 제외하므로(inline exception) 여기 대상이 아니다. */
 .gnav a,.gnav .on{font-size:15px;padding:12px 11px;min-height:44px;
@@ -285,7 +285,7 @@ background:var(--wash);padding:9px 11px}
 .board.steps .gn{font-size:23px;margin-top:2px}
 /* 네 칸의 설명·숫자·링크가 같은 높이에서 시작하게 두 블록에 하한을 준다. 글자 수가
    달라 칸마다 줄 수가 갈리면 숫자 줄이 들쭉날쭉해 네 칸이 한 묶음으로 안 읽힌다.
-   🔴 `*{box-sizing:border-box}` 라 min-height 에 패딩(9+9)이 포함된다 — 2줄 높이를
+   `*{box-sizing:border-box}` 라 min-height 에 패딩(9+9)이 포함된다 — 2줄 높이를
    em 으로만 적으면 1줄 칸이 18px 짧게 서서 숫자 줄이 어긋난다(실측). 2줄 40px +
    패딩 18px 를 그대로 적는다. 본문 계단이 15px 로 올라가며 2줄이 48px 가 되어
    58 → 70 으로 같이 올린다 — 하한이 내용보다 작으면 칸마다 숫자 줄이 어긋난다 */
@@ -314,7 +314,7 @@ padding:11px 13px;min-height:146px}
 .board .list a{color:var(--ink);text-decoration:none;
 border-bottom:1px solid transparent}
 .board .list a:hover{border-bottom-color:var(--ink)}
-/* 🔴 누름 자리 하한 44px 는 지키는 선이지 목표가 아니다 — 입구 일곱 칸은 쪽에서
+/* 누름 자리 하한 44px 는 지키는 선이지 목표가 아니다 — 입구 일곱 칸은 쪽에서
    가장 많이 눌리는 자리라 52px 로 둔다(WCAG 2.5.5 권장 44 · Material 48dp 위). */
 .board .go{display:flex;align-items:center;min-height:52px;box-sizing:border-box;
 margin-top:11px;font-size:15px;font-weight:650;
@@ -332,7 +332,7 @@ border-bottom:1px solid var(--rule);padding:9px 0}
 .more a span{color:var(--sub);font-size:15px}
 .more a i{font-style:italic}
 .grid26{display:grid;grid-template-columns:repeat(5,1fr);gap:0 16px;margin:0 0 8px}
-/* 🔴 누름 자리 하한 44px — 이름 26곳은 문장 속 링크가 아니라 **목록**이므로
+/* 누름 자리 하한 44px — 이름 26곳은 문장 속 링크가 아니라 **목록**이므로
    규격의 인라인 예외 대상이 아니다. 23.6px 로 서 있었다(실측 2026-11-16).
    밑줄은 border 로 그리면 44px 상자 바닥에 떨어져 글자와 떨어진다 —
    text-decoration 으로 바꿔 글자 선에 붙인다. */
@@ -377,7 +377,7 @@ max-width:94ch;word-break:break-all}
 .scroll{overflow:visible}
 @media screen and (max-width:860px){
  .wrap{padding:20px 16px 52px}
- /* 🔴 여덟 칸은 가로로 스크롤시키면 안 된다. 390px 에서 내비 너비가 628px 가 되어
+ /* 여덟 칸은 가로로 스크롤시키면 안 된다. 390px 에서 내비 너비가 628px 가 되어
     238px(보통 보조 3칸 쪽)이 화면 밖에 남는데, 스크롤된다는 표시가 아무것도 없어
     독자에겐 그냥 없는 칸이 된다(실측 2026-11-16). 두 줄로 접어 여덟 칸을 다 세운다. */
  .gnav-in{padding:0 16px;flex-wrap:wrap;overflow-x:visible}
@@ -388,7 +388,7 @@ max-width:94ch;word-break:break-all}
  /* 보드를 3칸 그대로 누르면 대학 이름이 세로로 쪼개진다. 쌓을 때 위 구분선은
     색을 지고 있으므로 남긴다 — 왼쪽 선과 달리 들여쓴 것처럼 읽히지 않는다. */
  .board{grid-template-columns:1fr;gap:22px}
- /* 🔴 `.board.steps`(0,2,0) 는 위 `.board`(0,1,0) 를 이긴다 — 같은 특정도로 다시
+ /* `.board.steps`(0,2,0) 는 위 `.board`(0,1,0) 를 이긴다 — 같은 특정도로 다시
     적지 않으면 390px 에서도 4칸이 남는다(칸 폭 79px · 정식명 6줄, 실측 2026-11-15).
     넘침으로는 안 잡힌다. 1fr 트랙은 글자를 쪼개며 끝까지 줄어든다. */
  .board.steps{grid-template-columns:1fr;gap:22px}
