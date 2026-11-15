@@ -11,48 +11,51 @@ src:url(fonts/Pretendard-Bold.subset.woff2) format('woff2')}
 --accent:#8A2F1F}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--paper);color:var(--ink)}
-/* 글자 크기는 일곱 계단에서만 고른다 — 10 · 11 · 12 · 14 · 16 · 19 · 21 (px).
-   10 = 글리프 표시(▸ ↕ 각주 번호) · 11 = 캡션·라벨·표 머리 · 12 = 표 본문·보조 산문
-   14 = 본문 산문·주요 표 숫자 · 16 = 소제목·강조 숫자 · 19 = 대학 이름·보드 숫자
-   21 = 쪽 제목.
+/* 글자 크기는 일곱 계단에서만 고른다 — 11 · 13 · 15 · 18 · 23 · 30 · 38 (px).
+   11 = 글리프 표시(▸ ↕ 각주 번호) · 13 = 라벨·표 머리·주석·단위
+   15 = 본문 산문·표 칸·목록 링크 · 18 = 절 제목·칼아웃
+   23 = 대학 이름·카드 제목·보드 숫자 · 30 = 쪽 제목·핵심 숫자 · 38 = 입구 단계 번호.
    🔴 새 크기를 만들지 않는다. 17종이던 때 10.5·11·11.5 가 같은 자리에서 섞여
    눈에 위계로 안 보였고(1280 실측: 11.5px 1,734칸 · 11px 2,078칸 · 10.5px 2,266칸),
-   12 와 12.5 는 0.5px 차이로 구분 자체가 불가능했다. 계단 사이는 최소 9% 벌어진다. */
+   12 와 12.5 는 0.5px 차이로 구분 자체가 불가능했다.
+   🔴 옛 계단(10·11·12·14·16·19·21)은 81곳 중 62곳이 11·12 두 칸에 몰려 있어
+   종수만 적었지 위계가 아니었다 — 「작고 뭐부터 볼지 모르겠다」의 근원이 여기였다.
+   계단 사이를 최소 15% 벌리고, 한 계단에 역할 하나만 묶는다. */
 body{font-family:Pretendard,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
-font-size:14px;line-height:1.55;word-break:keep-all;
+font-size:15px;line-height:1.55;word-break:keep-all;
 font-variant-numeric:lining-nums tabular-nums;
 -webkit-font-smoothing:antialiased}
 .wrap{max-width:1180px;margin:0 auto;padding:34px 36px 64px}
 .runhead{display:flex;justify-content:space-between;gap:20px;align-items:baseline;
-font-size:11px;letter-spacing:.01em;color:var(--sub);
+font-size:13px;letter-spacing:.01em;color:var(--sub);
 border-bottom:1px solid var(--rule);padding-bottom:7px;margin-bottom:26px}
 .runhead b{font-weight:600;color:var(--ink)}
 /* 쪽 꼬리 — 러닝헤드와 같은 캡션 무게. 본문과 섞이지 않게 선 하나로만 뗀다 */
 .foot{margin:52px 0 0;padding:13px 0 0;border-top:1px solid var(--rule);
-font-size:11px;line-height:1.72;color:var(--sub);max-width:78ch}
+font-size:13px;line-height:1.72;color:var(--sub);max-width:78ch}
 .foot p{margin:0 0 2px}
 .foot b{font-weight:650;color:var(--ink)}
 .foot a{color:var(--ink)}
-h1{font-size:21px;font-weight:650;letter-spacing:-.01em;margin:0 0 5px}
-.lede{color:var(--sub);font-size:12px;margin:0 0 32px;max-width:66ch}
-h2{font-size:14px;font-weight:600;letter-spacing:.01em;margin:0 0 2px}
+h1{font-size:30px;font-weight:650;letter-spacing:-.01em;margin:0 0 5px}
+.lede{color:var(--sub);font-size:15px;margin:0 0 32px;max-width:66ch}
+h2{font-size:18px;font-weight:600;letter-spacing:.01em;margin:0 0 2px}
 table{border-collapse:collapse;width:100%;border:0;border-top:1.5px solid var(--ink)}
 caption{text-align:left;caption-side:top}
 th,td{border:0;padding:6px 10px;text-align:left;vertical-align:baseline}
 /* 각주 번호 — 브라우저 기본값 font-size:smaller 가 10.4167px 라서 계단 밖으로 삐져나갔다 */
-sup{font-size:10px;line-height:0;vertical-align:super}
+sup{font-size:11px;line-height:0;vertical-align:super}
 thead th{border-bottom:1px solid var(--ink);font-weight:600;
-font-size:11px;color:var(--sub);padding-bottom:5px}
+font-size:13px;color:var(--sub);padding-bottom:5px}
 tbody tr:last-child td{border-bottom:1.5px solid var(--ink)}
 .num{text-align:right}
 .sub{color:var(--sub)}
-.mini{font-size:11px;color:var(--sub)}
-.note{font-size:11px;color:var(--sub);margin-top:9px;max-width:64ch}
-.fn{list-style:none;margin:10px 0 0;padding:0;font-size:11px;color:var(--sub);max-width:96ch}
+.mini{font-size:13px;color:var(--sub)}
+.note{font-size:13px;color:var(--sub);margin-top:9px;max-width:64ch}
+.fn{list-style:none;margin:10px 0 0;padding:0;font-size:13px;color:var(--sub);max-width:96ch}
 .fn li{margin:2px 0;text-indent:-1.4em;padding-left:1.4em}
 /* 안내 — 번호가 글자 왼쪽 밖에 서야 여섯 항목이 목록으로 읽힌다. 테두리로 가두지
    않는다. 가두면 「광고 칸」처럼 보여 읽지 않고 지나간다. */
-.notice{margin:0;padding:0 0 0 1.9em;list-style:decimal;font-size:11px;
+.notice{margin:0;padding:0 0 0 1.9em;list-style:decimal;font-size:13px;
 line-height:1.78;color:var(--sub);max-width:82ch;border-top:1px solid var(--rule);
 padding-top:13px}
 .notice li{margin:0 0 6px}
@@ -67,17 +70,17 @@ vertical-align:1px;border-radius:1px}
 .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;margin-bottom:46px}
 .gunhead{display:flex;align-items:baseline;justify-content:space-between;
 margin-bottom:9px;padding-bottom:0}
-.gunname{font-size:16px;font-weight:650;letter-spacing:-.01em}
-.gunstat{font-size:11px;color:var(--sub)}
+.gunname{font-size:18px;font-weight:650;letter-spacing:-.01em}
+.gunstat{font-size:13px;color:var(--sub)}
 .sect{margin-bottom:44px}
 .digest{margin:3px 0 0;padding:0;list-style:none}
-.digest li{font-size:11px;color:var(--sub);line-height:1.5}
-.cmp th.lab,.cmp td.lab{width:118px;color:var(--sub);font-size:11px;
+.digest li{font-size:13px;color:var(--sub);line-height:1.5}
+.cmp th.lab,.cmp td.lab{width:118px;color:var(--sub);font-size:13px;
 font-weight:400;padding-left:0}
-.cmp td{border-bottom:1px solid #EDEBE6;font-size:12px}
+.cmp td{border-bottom:1px solid #EDEBE6;font-size:15px}
 .cmp tbody tr:last-child td{border-bottom:1.5px solid var(--ink)}
-.cmp th.u{font-size:14px;font-weight:650;color:var(--ink);padding-bottom:7px}
-.big{font-size:16px;font-weight:650}
+.cmp th.u{font-size:18px;font-weight:650;color:var(--ink);padding-bottom:7px}
+.big{font-size:18px;font-weight:650}
 .warn{color:var(--accent)}
 
 /* 읽는 순서 — 「뭐부터 봐야 하나」를 화면이 스스로 말한다.
@@ -86,8 +89,8 @@ font-weight:400;padding-left:0}
 border-bottom:1px solid var(--rule);margin:0 0 26px}
 .lead .st{flex:1 1 200px;min-width:0;padding:11px 17px 13px 0}
 .lead .st+.st{padding-left:17px;border-left:1px solid var(--rule)}
-.lead .no{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.07em}
-.lead .tx{font-size:12px;line-height:1.5;margin-top:3px}
+.lead .no{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.07em}
+.lead .tx{font-size:15px;line-height:1.5;margin-top:3px}
 .lead .tx b{font-weight:600}
 
 /* 핵심 숫자 — 작은 회색 글씨에 묻어 두지 않는다. 한 화면의 앵커 값만 올린다. */
@@ -95,10 +98,10 @@ border-bottom:1px solid var(--rule);margin:0 0 26px}
 border-bottom:1px solid var(--rule);margin:0 0 30px}
 .kpi>div{flex:1 1 120px;min-width:0;padding:12px 16px 13px 0}
 .kpi>div+div{padding-left:16px;border-left:1px solid var(--rule)}
-.kpi .n{font-size:21px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
-.kpi .n em{font-style:normal;font-size:12px;font-weight:600;color:var(--sub);
+.kpi .n{font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.kpi .n em{font-style:normal;font-size:13px;font-weight:600;color:var(--sub);
 margin-left:2px;letter-spacing:0}
-.kpi .k{font-size:11px;color:var(--sub);margin-top:3px}
+.kpi .k{font-size:13px;color:var(--sub);margin-top:3px}
 .kpi .hot .n{color:var(--accent)}
 .kpi .c0 .n{color:var(--g0)}
 .kpi .c1 .n{color:var(--g1)}
@@ -109,10 +112,10 @@ margin-left:2px;letter-spacing:0}
 .pick{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
 padding:10px 0 11px;margin:0 0 22px}
 .pickhead{display:flex;align-items:baseline;gap:10px;margin-bottom:8px}
-.pickhead b{font-size:12px;font-weight:650}
+.pickhead b{font-size:15px;font-weight:650}
 .pickgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(166px,1fr));
 gap:3px 14px}
-.pickgrid label{font-size:12px;cursor:pointer;user-select:none;
+.pickgrid label{font-size:15px;cursor:pointer;user-select:none;
 display:flex;align-items:center;gap:7px;min-height:44px;padding:4px 0}
 .pickgrid label.off{color:var(--sub);cursor:default}
 .pickgrid input{margin:0;width:17px;height:17px;flex:0 0 17px;
@@ -121,7 +124,7 @@ accent-color:var(--ink)}
    체크박스와 맞닿아 그쪽 군으로 읽힌다 — 실측으로 서울대 나군 칩이 연세대에 붙어 보였다 */
 .pg{display:flex;gap:2px}
 .pg .chip{margin:0;width:7px;height:7px}
-.plain{margin-left:auto;font:inherit;font-size:11px;color:var(--sub);
+.plain{margin-left:auto;font:inherit;font-size:13px;color:var(--sub);
 background:none;border:0;min-height:44px;padding:0 2px;cursor:pointer}
 .plain span{border-bottom:1px solid var(--rule);padding-bottom:1px}
 .plain:hover span{border-bottom-color:var(--ink)}
@@ -132,7 +135,7 @@ background:none;border:0;min-height:44px;padding:0 2px;cursor:pointer}
 .pick{display:none}}
 
 /* 전수 조회표 — 요약표와 디자인을 공유하지 않는다 (UK Analysis Function) */
-.ref{font-size:12px}
+.ref{font-size:15px}
 .ref thead th{position:sticky;top:0;background:var(--paper);z-index:2;
 box-shadow:0 1px 0 var(--ink)}
 .ref th,.ref td{padding:3px 10px 3px 0}
@@ -141,17 +144,17 @@ box-shadow:0 1px 0 var(--ink)}
 .bar{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;
 padding:11px 0 12px;border-bottom:1px solid var(--rule);margin-bottom:4px;
 position:sticky;top:0;background:var(--paper);z-index:3}
-.bar input[type=search]{font:inherit;font-size:14px;width:230px;padding:5px 8px;
+.bar input[type=search]{font:inherit;font-size:15px;width:230px;padding:5px 8px;
 border:0;border-bottom:1px solid var(--ink);background:transparent;color:inherit}
 .bar input[type=search]:focus{outline:0;border-bottom-width:2px}
-.bar label{font-size:12px;color:var(--sub);cursor:pointer;user-select:none;
+.bar label{font-size:15px;color:var(--sub);cursor:pointer;user-select:none;
 display:inline-flex;align-items:center;gap:6px;min-height:44px}
 .bar label input{margin:0;width:17px;height:17px;flex:0 0 17px;
 accent-color:var(--ink)}
-.bar .count{margin-left:auto;font-size:12px;color:var(--sub)}
+.bar .count{margin-left:auto;font-size:15px;color:var(--sub)}
 .bar .count b{color:var(--ink);font-weight:650}
 .ref th.s{cursor:pointer;user-select:none}
-.ref th.s:after{content:'\2195';opacity:.32;margin-left:3px;font-size:10px}
+.ref th.s:after{content:'\2195';opacity:.32;margin-left:3px;font-size:11px}
 .ref th.s[data-dir]:after{opacity:1}
 .ref th.s[data-dir="1"]:after{content:'\2191'}
 .ref th.s[data-dir="-1"]:after{content:'\2193'}
@@ -166,11 +169,11 @@ accent-color:var(--ink)}
    글자는 DOM 에 남아 검색이 그 행을 계속 찾는다. */
 .ref td.ux .uax{display:none}
 .ref tbody tr.grp>td{border-top:1px solid var(--rule)}
-.gmark{font-size:11px;font-weight:600;margin-right:7px;white-space:nowrap}
+.gmark{font-size:13px;font-weight:600;margin-right:7px;white-space:nowrap}
 a.ul{color:inherit;text-decoration:none;border-bottom:1px solid var(--rule)}
 a.ul:hover{border-bottom-color:var(--ink)}
 .note a,.lede a{color:var(--ink)}
-.empty{padding:26px 0;color:var(--sub);font-size:12px}
+.empty{padding:26px 0;color:var(--sub);font-size:15px}
 /* 열 폭을 못 박는다 — 표마다 자동 폭이면 같은 항목이 표마다 다른 자리에 선다 */
 table.fix{table-layout:fixed}
 /* 5열. 대학 칸이 넓어진 것은 그 아래 수능 반영 두 줄을 같이 지기 때문이고, 모집단위
@@ -182,7 +185,7 @@ table.fix{table-layout:fixed}
 .u3 th:nth-child(4),.u3 td:nth-child(4){width:120px}
 .u3 th:nth-child(5),.u3 td:nth-child(5){width:120px}
 /* 대학 단위 값 — 이름 아래 작은 두 줄. 행마다가 아니라 대학마다 한 번 뜬다. */
-.uax{display:block;font-size:11px;line-height:1.5;color:var(--sub);
+.uax{display:block;font-size:13px;line-height:1.5;color:var(--sub);
 font-weight:400;margin-top:2px;white-space:nowrap}
 .uax:first-of-type{margin-top:4px}
 /* 열 머리를 필터 막대 **아래**에 세운다. 47px 로 박아 두면 막대가 한 줄 더 꺾이는
@@ -202,32 +205,32 @@ padding-bottom:13px;border-bottom:1px solid var(--rule)}
 /* 🔴 대학 색인도 목록이다 — 20.6px 로 서 있었다(실측 2026-11-16). 26칸을 44px 로
    올리면 색인 높이가 두 배가 되지만, 한 번만 지나가는 맨 윗줄이고 여기를 못 누르면
    대학 한 곳으로 좁히는 길이 막힌다. 밑줄은 글자 선에 붙인다(.grid26 과 같은 이유). */
-.idx a{font-size:12px;color:var(--ink);text-decoration:none;
+.idx a{font-size:15px;color:var(--ink);text-decoration:none;
 min-height:44px;display:inline-flex;align-items:center}
 .idx a:hover{text-decoration:underline;text-underline-offset:3px}
-.idx .lab{font-size:11px;color:var(--sub);width:100%;margin-bottom:3px}
-.idx .grp{width:100%;margin-top:9px;font-size:11px;font-weight:600;
+.idx .lab{font-size:13px;color:var(--sub);width:100%;margin-bottom:3px}
+.idx .grp{width:100%;margin-top:9px;font-size:13px;font-weight:600;
 color:var(--sub);letter-spacing:.02em}
 .u-sect{margin:0 0 50px;scroll-margin-top:14px}
 .u-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
 border-bottom:1.5px solid var(--ink);padding-bottom:6px;margin-bottom:11px}
-.u-name{font-size:19px;font-weight:650;letter-spacing:-.01em}
-.u-meta{font-size:11px;color:var(--sub);margin-left:auto}
+.u-name{font-size:23px;font-weight:650;letter-spacing:-.01em}
+.u-meta{font-size:13px;color:var(--sub);margin-left:auto}
 .slots{margin:0 0 17px;padding:0;list-style:none;max-width:92ch}
-.slots li{font-size:12px;line-height:1.56;text-indent:-1.15em;padding-left:1.15em}
+.slots li{font-size:15px;line-height:1.56;text-indent:-1.15em;padding-left:1.15em}
 .slots li:before{content:'— ';color:var(--sub)}
-.f8 td.lab{width:118px;color:var(--sub);font-size:11px;padding-left:0}
-.f8 td{border-bottom:1px solid #EDEBE6;font-size:12px;vertical-align:baseline}
+.f8 td.lab{width:118px;color:var(--sub);font-size:13px;padding-left:0}
+.f8 td{border-bottom:1px solid #EDEBE6;font-size:15px;vertical-align:baseline}
 .f8 tbody tr:last-child td{border-bottom:1.5px solid var(--ink)}
 details{margin-top:15px}
-summary{font-size:11px;color:var(--sub);cursor:pointer;padding:13px 0;
+summary{font-size:13px;color:var(--sub);cursor:pointer;padding:13px 0;
 border-bottom:1px solid var(--rule);list-style:none}
 summary::-webkit-details-marker{display:none}
-summary:before{content:'▸ ';font-size:10px;vertical-align:1px}
+summary:before{content:'▸ ';font-size:11px;vertical-align:1px}
 details[open]>summary:before{content:'▾ '}
 details[open]>summary{color:var(--ink)}
-.anchor{font-size:11px;color:var(--sub);font-variant-numeric:tabular-nums}
-.grade td,.grade th{padding:4px 9px 4px 0;font-size:11px}
+.anchor{font-size:13px;color:var(--sub);font-variant-numeric:tabular-nums}
+.grade td,.grade th{padding:4px 9px 4px 0;font-size:13px}
 /* 영어·한국사 등급표 두 짝.
    주의: flex 자식의 `min-width` 기본값은 `auto` 라 **내용보다 작아지지 않는다** —
    안쪽 표에 가로 스크롤 그릇을 씌워도 칸 자체가 표 너비만큼 버티며 쪽을 밀어낸다
@@ -242,7 +245,7 @@ display:flex;flex-wrap:wrap;gap:0 2px;align-items:stretch}
 /* 🔴 누름 자리 높이 하한은 44px 이다 (WCAG 2.5.5 · iOS HIG 44pt). padding 만
    믿으면 조용히 40.6px 로 떨어진다 — 실측 2026-11-16. 문장 · 표 칸 안의
    인라인 링크는 규격이 제외하므로(inline exception) 여기 대상이 아니다. */
-.gnav a,.gnav .on{font-size:12px;padding:12px 11px;min-height:44px;
+.gnav a,.gnav .on{font-size:15px;padding:12px 11px;min-height:44px;
 box-sizing:border-box;display:flex;align-items:center;text-decoration:none;
 color:var(--sub);border-bottom:2px solid transparent;white-space:nowrap}
 .gnav a:hover{color:var(--ink);border-bottom-color:var(--rule)}
@@ -255,72 +258,85 @@ color:var(--sub);border-bottom:2px solid transparent;white-space:nowrap}
    독자 과제가 「원서 3장 배분」이므로 첫 화면을 가 · 나 · 다 세 칸으로 둔다.
    색은 여기서도 데이터 범주(군)에만 쓴다 — UI 크롬은 무채색이다. */
 .callout{background:var(--wash2);padding:17px 21px;margin:0 0 34px;
-font-size:14px;line-height:1.75;max-width:70ch}
+font-size:18px;line-height:1.75;max-width:70ch}
 .callout b{font-weight:650}
-.secthead{font-size:11px;font-weight:600;color:var(--sub);letter-spacing:.02em;
-margin:0 0 9px;padding-bottom:7px;border-bottom:1px solid var(--rule)}
+/* 묶음 경계 — 쪽 안에서 「여기부터 다른 덩어리」를 알리는 유일한 장치다. 회색 글씨에
+   연한 선이면 본문과 같은 무게로 읽혀 묶음이 안 보인다(2026-11-16 시안 판정). 글자를
+   먹으로 올리고 선을 먹 1.5px 로 굵혀, 선 하나로만 가른다 — 배경 덩어리를 쓰면
+   아래 표 영역과 톤이 갈려 그 구간만 다른 문서처럼 보인다. */
+.secthead{font-size:13px;font-weight:650;color:var(--ink);letter-spacing:.02em;
+margin:0 0 11px;padding-bottom:8px;border-bottom:1.5px solid var(--ink)}
 .secthead i{font-style:italic;font-weight:400}
 .secthead.gap{margin-top:34px}
 .board{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:0 0 38px}
 /* 4단계 보드 (입구) — 단계에는 군 색을 주지 않는다. 색은 가/나/다에만 쓴다 */
 .board.steps{grid-template-columns:repeat(4,1fr);gap:14px}
-.board .no{font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--sub)}
-.board .fm{font-size:11px;line-height:1.5;color:var(--sub);margin:3px 0 0;
+.board .no{font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--sub)}
+/* 단계 번호 — 입구의 1차 기능은 「전국 현황에서 대학 한 곳으로 좁히는 순서」이고,
+   그 순서가 가장 먼저 읽혀야 한다. 숫자 글리프만 키운다. 「단계」까지 같이 키우면
+   세 글자가 칸 폭을 먹어 카드 제목과 크기가 겹친다. */
+.board.steps .no{color:var(--ink);letter-spacing:0;line-height:1;margin-bottom:5px}
+.board.steps .no b{font-size:38px;font-weight:700;letter-spacing:-.03em;
+margin-right:3px;vertical-align:-2px}
+.board .fm{font-size:13px;line-height:1.5;color:var(--sub);margin:3px 0 0;
 min-height:3em}
-.board .wt{font-size:12px;line-height:1.6;margin:9px 0 0;
+.board .wt{font-size:15px;line-height:1.6;margin:9px 0 0;
 background:var(--wash);padding:9px 11px}
-.board.steps .gn{font-size:19px;margin-top:2px}
+.board.steps .gn{font-size:23px;margin-top:2px}
 /* 네 칸의 설명·숫자·링크가 같은 높이에서 시작하게 두 블록에 하한을 준다. 글자 수가
    달라 칸마다 줄 수가 갈리면 숫자 줄이 들쭉날쭉해 네 칸이 한 묶음으로 안 읽힌다.
    🔴 `*{box-sizing:border-box}` 라 min-height 에 패딩(9+9)이 포함된다 — 2줄 높이를
    em 으로만 적으면 1줄 칸이 18px 짧게 서서 숫자 줄이 어긋난다(실측). 2줄 40px +
-   패딩 18px = 58px 를 그대로 적는다 */
-.board.steps .wt{min-height:58px}
+   패딩 18px 를 그대로 적는다. 본문 계단이 15px 로 올라가며 2줄이 48px 가 되어
+   58 → 70 으로 같이 올린다 — 하한이 내용보다 작으면 칸마다 숫자 줄이 어긋난다 */
+.board.steps .wt{min-height:70px}
 .board.steps .stat{margin:9px 0 0}
 /* 보조 3칸 (입구) — 단계가 아니므로 번호도 숫자도 없다. 숫자를 다시 적으면 바로
    아래 핵심 숫자와 같은 값이 두 번 강조돼 서로를 깎는다. 위계는 색이 아니라
-   윗선 두께로만 준다 (단계 3px · 보조 1px). */
+   윗선 두께로만 준다 (단계 4px · 보조 1px). */
 .board.aux3 .col{border-top-width:1px}
-.board.aux3 .wt{min-height:58px}
-.board .col{border-top:3px solid var(--ink);padding-top:12px}
+.board.aux3 .wt{min-height:70px}
+.board .col{border-top:4px solid var(--ink);padding-top:12px}
 .board .col.b0{border-top-color:var(--g0)}
 .board .col.b1{border-top-color:var(--g1)}
 .board .col.b2{border-top-color:var(--g2)}
-.board .gn{font-size:19px;font-weight:700;letter-spacing:-.01em}
+.board .gn{font-size:23px;font-weight:700;letter-spacing:-.01em}
 .board .b0 .gn{color:var(--g0)}.board .b1 .gn{color:var(--g1)}
 .board .b2 .gn{color:var(--g2)}
 /* 주의: 클래스 이름을 `.num` 으로 두면 전역 유틸리티 `.num{text-align:right}`
    (표 숫자열용)에 걸려 보드 머리가 오른쪽으로 밀린다 — 캡처로만 보이는 결함.
    CSS 주석은 산출 site.css 에 그대로 실린다. 내부 마커를 여기 적으면 폰트
    서브셋이 원본에 없는 글자를 요청한다 — 주석에도 안 적는다. */
-.board .stat{font-size:12px;color:var(--sub);margin:4px 0 11px}
-.board .stat b{color:var(--ink);font-weight:650;font-size:16px}
-.board .list{font-size:12px;line-height:1.85;background:var(--wash);
+.board .stat{font-size:15px;color:var(--sub);margin:4px 0 11px}
+.board .stat b{color:var(--ink);font-weight:650;font-size:23px}
+.board .list{font-size:15px;line-height:1.85;background:var(--wash);
 padding:11px 13px;min-height:146px}
 .board .list a{color:var(--ink);text-decoration:none;
 border-bottom:1px solid transparent}
 .board .list a:hover{border-bottom-color:var(--ink)}
-.board .go{display:flex;align-items:center;min-height:44px;box-sizing:border-box;
-margin-top:11px;font-size:12px;font-weight:600;
+/* 🔴 누름 자리 하한 44px 는 지키는 선이지 목표가 아니다 — 입구 일곱 칸은 쪽에서
+   가장 많이 눌리는 자리라 52px 로 둔다(WCAG 2.5.5 권장 44 · Material 48dp 위). */
+.board .go{display:flex;align-items:center;min-height:52px;box-sizing:border-box;
+margin-top:11px;font-size:15px;font-weight:650;
 color:var(--ink);text-decoration:none;border-top:1px solid var(--rule);
-padding:13px 0 12px}
+padding:15px 0 14px}
 .board .go:hover{background:var(--wash)}
-.morehead{font-size:11px;font-weight:600;color:var(--sub);letter-spacing:.02em;
+.morehead{font-size:13px;font-weight:600;color:var(--sub);letter-spacing:.02em;
 margin:0 0 7px}
 /* 「다음에 하는 일」 — 한 줄 텍스트로 두면 링크로 읽히지 않는다(2026-11-14 진단). */
 .more{display:grid;grid-template-columns:repeat(2,1fr);gap:0 24px;margin:0 0 38px}
-.more a{display:block;font-size:14px;color:var(--ink);text-decoration:none;
+.more a{display:block;font-size:18px;color:var(--ink);text-decoration:none;
 border-bottom:1px solid var(--rule);padding:9px 0}
 .more a:hover{background:var(--wash)}
 .more a b{font-weight:600}
-.more a span{color:var(--sub);font-size:12px}
+.more a span{color:var(--sub);font-size:15px}
 .more a i{font-style:italic}
 .grid26{display:grid;grid-template-columns:repeat(5,1fr);gap:0 16px;margin:0 0 8px}
 /* 🔴 누름 자리 하한 44px — 이름 26곳은 문장 속 링크가 아니라 **목록**이므로
    규격의 인라인 예외 대상이 아니다. 23.6px 로 서 있었다(실측 2026-11-16).
    밑줄은 border 로 그리면 44px 상자 바닥에 떨어져 글자와 떨어진다 —
    text-decoration 으로 바꿔 글자 선에 붙인다. */
-.grid26 a{font-size:12px;color:var(--ink);text-decoration:none;
+.grid26 a{font-size:15px;color:var(--ink);text-decoration:none;
 min-height:44px;display:flex;align-items:center}
 .grid26 a:hover{text-decoration:underline;text-underline-offset:3px}
 .grid26 .pg{flex:0 0 auto;margin-right:5px}
@@ -328,31 +344,31 @@ min-height:44px;display:flex;align-items:center}
 
 /* 올해 현황 (Ⅰ장) — 라벨은 값의 확실성 등급이라 본문과 같은 무게로 두지 않는다 */
 .axis{border-top:1.5px solid var(--ink);border-bottom:1px solid var(--rule);
-padding:12px 0 13px;margin:0 0 20px;font-size:12px;max-width:78ch}
-.legend{margin:0 0 36px;font-size:11px;color:var(--sub);max-width:78ch}
+padding:12px 0 13px;margin:0 0 20px;font-size:15px;max-width:78ch}
+.legend{margin:0 0 36px;font-size:13px;color:var(--sub);max-width:78ch}
 .legend div{display:flex;gap:10px;padding:2px 0}
 .legend b{flex:0 0 78px;font-weight:600;color:var(--ink)}
-.tag{font-size:11px;font-weight:600;color:var(--sub);letter-spacing:.02em;
+.tag{font-size:13px;font-weight:600;color:var(--sub);letter-spacing:.02em;
 margin-left:9px;white-space:nowrap}
-.ch1 h2{font-size:16px;font-weight:650;letter-spacing:-.005em;margin:0 0 9px}
+.ch1 h2{font-size:18px;font-weight:650;letter-spacing:-.005em;margin:0 0 9px}
 .ch1 table{margin-top:4px}
-.ch1 .sub-h{font-size:12px;font-weight:600;margin:24px 0 0}
-.unit{font-size:11px;color:var(--sub);margin:0 0 3px}
+.ch1 .sub-h{font-size:15px;font-weight:600;margin:24px 0 0}
+.unit{font-size:13px;color:var(--sub);margin:0 0 3px}
 .read{border-left:2px solid var(--rule);padding:1px 0 1px 13px;margin:15px 0 0;
-font-size:12px;max-width:74ch}
+font-size:15px;max-width:74ch}
 .unpub{border-left:2px solid #8A2F1F;padding:1px 0 1px 13px;margin:15px 0 0;
-font-size:12px;max-width:74ch}
-.src{list-style:none;margin:15px 0 0;padding:0;font-size:11px;color:var(--sub);
+font-size:15px;max-width:74ch}
+.src{list-style:none;margin:15px 0 0;padding:0;font-size:13px;color:var(--sub);
 max-width:94ch;word-break:break-all}
 .src li{padding:1px 0}
-.ulist{font-size:11px;line-height:1.7;color:var(--sub)}
+.ulist{font-size:13px;line-height:1.7;color:var(--sub)}
 .ulist b.ours{font-weight:600;color:var(--ink)}
 
 /* 올해 바뀐 곳 */
-.d-old{color:var(--sub);font-size:12px}
-.d-new{font-size:12px}
+.d-old{color:var(--sub);font-size:15px}
+.d-new{font-size:15px}
 .d-arrow{color:var(--sub);padding:0 2px}
-.kind{font-size:11px;color:var(--sub);white-space:nowrap}
+.kind{font-size:13px;color:var(--sub);white-space:nowrap}
 
 /* 좁은 화면.
    주의: `screen and` 를 뺄 수 없다. A4 세로 인쇄 지면은 CSS 픽셀로 794px 라
@@ -417,15 +433,15 @@ max-width:94ch;word-break:break-all}
  .u3 tr{border-bottom:1px solid var(--rule);padding:9px 0 10px}
  .u3 tbody tr:last-child td{border-bottom:0}
  .u3 td{padding:0;text-align:left;border:0}
- .u3 td:nth-child(1){font-size:11px;color:var(--sub)}
+ .u3 td:nth-child(1){font-size:13px;color:var(--sub)}
  /* 카드는 한 행이 혼자 서므로 대학 단위 값도 그 카드 안에 있어야 한다 — 다만
     줄을 셋으로 늘리지 않고 대학 이름과 같은 줄에 잇는다. */
  .u3 td:nth-child(1) .uax{display:inline;margin:0 0 0 8px;white-space:normal}
- .u3 td:nth-child(2){font-size:11px;color:var(--sub)}
- .u3 td:nth-child(3){font-size:16px;font-weight:650;line-height:1.35;margin:1px 0 4px}
+ .u3 td:nth-child(2){font-size:13px;color:var(--sub)}
+ .u3 td:nth-child(3){font-size:18px;font-weight:650;line-height:1.35;margin:1px 0 4px}
  .u3 td:nth-child(n+4):nth-child(-n+5){display:inline-block;margin:0 15px 0 0;
- font-size:12px}
- .u3 td:nth-child(5):before{color:var(--sub);font-size:11px;
+ font-size:15px}
+ .u3 td:nth-child(5):before{color:var(--sub);font-size:13px;
  font-weight:400;margin-right:3px;content:'인원'}
 }
 /* 폰 폭 — 입구 두 칸을 유지하면 「다음에 하는 일」 제목이 어절 중간에서 꺾인다. */
