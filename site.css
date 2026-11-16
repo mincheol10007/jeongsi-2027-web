@@ -238,6 +238,17 @@ details[open]>summary{color:var(--ink)}
 .gpair{display:flex;gap:40px;flex-wrap:wrap;margin-top:17px}
 .gpair>div{min-width:0}
 
+/* 핵심 분석 카드 26장 (원문 Ⅱ장). 머리 · 요약 · 표는 상세 요강 화면과 **같은
+   클래스**를 쓴다 — 두 층이 같은 꼴로 보여야 「요약을 읽고 상세로 잇는다」가 성립한다.
+   상세와 다른 것은 둘뿐이다: 두 칸 격자에 담기고, 칸마다 상세로 가는 길이 붙는다. */
+.acards{display:grid;grid-template-columns:repeat(2,1fr);gap:0 38px}
+.a-card{min-width:0;margin:0 0 34px;scroll-margin-top:14px}
+.a-card .f8 td.lab{width:92px}
+.a-card .go{display:flex;align-items:center;min-height:52px;box-sizing:border-box;
+margin-top:11px;font-size:15px;font-weight:650;color:var(--ink);
+text-decoration:none;border-top:1px solid var(--rule);padding:15px 0 14px}
+.a-card .go:hover{background:var(--wash)}
+
 /* 전역 내비 — 8칸, 모든 페이지 같은 자리·같은 순서. 현재 위치만 무채색 반전 */
 .gnav{border-bottom:1px solid var(--rule);background:var(--paper)}
 .gnav-in{max-width:1180px;margin:0 auto;padding:0 36px;
@@ -321,11 +332,40 @@ margin-top:11px;font-size:15px;font-weight:650;
 color:var(--ink);text-decoration:none;border-top:1px solid var(--rule);
 padding:15px 0 14px}
 .board .go:hover{background:var(--wash)}
+/* 입구 카드 여덟 칸 (집사 확정 2026-11-16).
+   상자 **전체**가 하나의 `a` 다. 칸 안 마지막 줄만 링크였던 구조가 집사 지적
+   「무엇을 클릭해야 하는지 알기 어렵다」의 원인이다. `display:grid` 를 링크에 직접
+   걸고 안쪽은 전부 `span` 으로 받는다 — `a` 안에 `a` 를 넣으면 바깥 링크가 끊긴다.
+   위계는 색이 아니라 윗선 두께로 준다 (카드 4px) — 색은 가/나/다에만 쓴다. */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 16px;margin:0 0 38px}
+.cards .card{display:grid;grid-template-rows:auto auto auto 1fr auto auto;
+border-top:4px solid var(--ink);padding-top:12px;color:var(--ink);
+text-decoration:none}
+.cards .card:hover{background:var(--wash)}
+.cards .no{font-size:13px;font-weight:700;color:var(--ink);line-height:1;
+margin-bottom:5px}
+.cards .no b{font-size:38px;font-weight:700;letter-spacing:-.03em}
+.cards .gn{font-size:23px;font-weight:700;letter-spacing:-.01em;margin-top:2px}
+.cards .fm{font-size:13px;line-height:1.5;color:var(--sub);margin:3px 0 0;
+min-height:3em}
+.cards .wt{font-size:15px;line-height:1.6;margin:9px 0 0;background:var(--wash);
+padding:9px 11px}
+.cards .stat{font-size:15px;color:var(--sub);margin:4px 0 11px}
+.cards .stat b{color:var(--ink);font-weight:650;font-size:23px}
+/* 누름 자리 하한 44px 는 지키는 선이지 목표가 아니다 — 카드는 쪽에서 가장 많이
+   눌리는 자리라 안쪽 줄만으로도 52px 를 지킨다(WCAG 2.5.5 권장 44 · Material 48dp 위).
+   카드 전체 높이는 그 몇 배다. */
+.cards .go{display:flex;align-items:center;min-height:52px;box-sizing:border-box;
+margin-top:11px;font-size:15px;font-weight:650;
+border-top:1px solid var(--rule);padding:15px 0 14px}
 .morehead{font-size:13px;font-weight:600;color:var(--sub);letter-spacing:.02em;
 margin:0 0 7px}
 /* 「다음에 하는 일」 — 한 줄 텍스트로 두면 링크로 읽히지 않는다(2026-11-14 진단). */
-.more{display:grid;grid-template-columns:repeat(2,1fr);gap:0 24px;margin:0 0 38px}
-.more a{display:block;font-size:18px;color:var(--ink);text-decoration:none;
+/* 2급 한 줄 — 카드가 아니다. 카드 한 칸을 더 쓰면 여덟 칸의 위계가 평면이 된다.
+   누름 자리 하한 44px — 문장 속 링크가 아니라 **목록**이므로 인라인 예외 밖이다. */
+.more{display:grid;grid-template-columns:1fr;gap:0 24px;margin:0 0 38px}
+.more a{display:flex;align-items:center;flex-wrap:wrap;gap:0 9px;min-height:44px;
+box-sizing:border-box;font-size:18px;color:var(--ink);text-decoration:none;
 border-bottom:1px solid var(--rule);padding:9px 0}
 .more a:hover{background:var(--wash)}
 .more a b{font-weight:600}
@@ -397,6 +437,13 @@ max-width:94ch;word-break:break-all}
     하한(0,2,1)은 같은 특정도로 풀어야 1칸에서 빈 줄이 남지 않는다. */
  .board.aux3 .wt{min-height:0}
  .board .list{min-height:0}
+ /* 입구 카드 · 핵심 분석 카드를 한 칸으로 내린다. 두 하한(`.cards .fm` 3em ·
+    `.cards .wt` 는 선언 안 했지만 `fm`)은 같은 특정도로 풀어야 1칸에서 빈 줄이
+    남지 않는다. 390px 에서 4칸을 그대로 두면 칸 폭 79px 로 정식명이 세로로
+    쪼개지며, 1fr 트랙은 글자를 쪼개며 끝까지 줄어들어 넘침으로는 안 잡힌다. */
+ .cards{grid-template-columns:1fr;gap:22px}
+ .cards .fm{min-height:0}
+ .acards{grid-template-columns:1fr;gap:0}
  .grid26{grid-template-columns:repeat(2,1fr)}
  /* 순서·숫자 칸은 쌓는다. 쌓인 칸에 왼쪽 구분선이 남으면 들여쓴 것처럼 읽힌다 */
  .lead .st,.kpi>div{flex:1 1 100%;padding-right:0}
